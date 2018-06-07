@@ -48,10 +48,12 @@ function counter(time) {
         timeBox.innerHTML = time;
         if (time < 0) {
             clearInterval(loop);
-            var reset = confirm("Gme Oveer!\n\n" + "Your score is: " + points + "\nOn level: " + initialLevel + "\n\nDo you want play again?");
+            var reset = confirm("Game Over!\n\n" + "Your score is: " + points + "\nOn level: " + initialLevel + "\n\nDo you want play again?");
             if (restart) {
                 startGme();
             } else {
+                body.onclick = null;
+                lefASide.lastChild.onclick = null;
                     resetInitial();
                     clearWindows();
                     startBtn.style.opacity = 1;
