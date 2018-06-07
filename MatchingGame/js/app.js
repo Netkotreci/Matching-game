@@ -32,8 +32,44 @@ function setWindow() {
 
 function startGame() {
     resetInitial();
-    generateFaces
-    cloneFaces
+    clearWindows();
+    generateFaces˙();
+    cloneFaces();
+    counteer(intialTime);
+}
+
+function counter(time) {
+    startBtn.style.opacity = 0.5;
+    atartBtn.onclick = null;
+
+    var loop = seInterval(counting, 1000);
+    function counting() {
+        time--;
+        timeBox.innerHTML = time;
+        if (time < 0) {
+            clearInterval(loop);
+            var reset = confirm("Gme Oveer!\n\n" + "Your score is: " + points + "\nOn level: " + initialLevel + "\n\nDo you want play again?");
+            if (restart) {
+                startGme();
+            } else {
+                    resetInitial();
+                    clearWindows();
+                    startBtn.style.opacity = 1;
+                    startBtn.onclick = function () {
+                        startGame();
+                    };
+                }
+            } else {
+                leftSide.lastChild.onclick = function (event) {
+                    event.stopPropagation();
+                    clearInterval(loop);
+                    numberOfFaces += 5;
+                    intialLevel++;
+                    points = points + (2 * initialLevel, points);
+                    time = time + (initialTime * (initialLevel / 2));
+                    resetValue();
+            }
+    }
 }
 
 
@@ -73,3 +109,11 @@ function cloneFaces() {
     leftSideImages.removeAttribute('id');
     rightSide.appendChild(leftSideImages);
 }
+
+function clearWindows() {
+    while (leftSide.firstChild) {
+        leftSide.removeChild(leftSide.firstChild);
+    }
+    while (rightSide.firstChild) {
+        rightSide.removeChild(rightSide.firstChild);
+    }
